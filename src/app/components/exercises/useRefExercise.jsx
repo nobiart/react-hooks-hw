@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import CollapseWrapper from "../common/collapse";
+import Divider from "../common/divider";
+
 const UseRefExercise = () => {
+    const blockRef = useRef();
+    const handleClickProps = () => {
+        blockRef.current.firstChild.innerText = "text";
+        blockRef.current.style.height = "150px";
+        blockRef.current.style.width = "80px";
+    };
     return (
         <CollapseWrapper title="Упражнение">
             <p className="mt-3">
@@ -18,9 +26,17 @@ const UseRefExercise = () => {
                     width: 60,
                     color: "white"
                 }}
+                ref={blockRef}
             >
                 <small>Блок</small>
             </div>
+            <Divider/>
+            <button
+                className="btn btn-success"
+                onClick={handleClickProps}
+            >
+                Change properties
+            </button>
         </CollapseWrapper>
     );
 };
